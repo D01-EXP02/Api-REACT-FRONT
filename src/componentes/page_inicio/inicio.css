@@ -1,0 +1,38 @@
+#contenedor{
+    position: relative;
+    display: flex;
+    justify-content: center;
+    height: 90vh;
+    align-items: center;
+}
+
+#contenedor::before{
+    content: "";
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background-image: url("https://www.proyectosendo.es/wp-content/uploads/2020/01/shutterstock_386814034-1280x839-1024x671.jpg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    z-index: -1;
+    opacity: 0.6;
+}
+
+Form{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    padding: 10px;
+    background: rgba(53, 74, 212, 0.521);
+    width: 60%;
+    height: 60%;
+    border-radius: 7px;
+}
+
+.btn_enviar{
+    margin-top: 20px;
+}
