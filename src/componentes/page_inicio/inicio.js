@@ -3,24 +3,34 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import { Cliente } from "../../clases/clientes";
 import { _guardarcliente }  from "../../Api_servicios/cliente_service"
 import { useState } from "react";
-import { Form, Button } from 'react-bootstrap';
+import { Form } from 'react-bootstrap';
 import Swal from 'sweetalert2'
 
 export default function Page_Inicio() {
     const [nombre, setNombre] = useState('')
     const [apellido, setApellido] = useState('')
     const [identificacion, setIdentificacion] = useState('')
-    const [sexo, setSexo] = useState('')
+    const [sexo, setSexo] = useState('masculino')
     const [fecha_nacimiento, setFecha_nacimiento] = useState('')
 
 
-    function guardarClientes(){
+    function guardarcliente(){
+
+        if (!nombre || !apellido || !identificacion || !sexo || !fecha_nacimiento) {
+            Swal.fire({
+                title: "Error",
+                text: "Por favor, complete todos los campos.",
+                icon: "error"
+            });
+            return;
+        }
+
         let clienteNuevo = new Cliente(
             nombre,
             apellido,
             identificacion,
-            sexo,
-            fecha_nacimiento
+            fecha_nacimiento,
+            sexo
         )
 
         _guardarcliente(clienteNuevo).then(mensaje =>{
@@ -40,49 +50,48 @@ export default function Page_Inicio() {
             <div id="contenedor">
                 <Form class="formulario row g-3">
                     <div class="campos col-md-6">
-                        <label for="inputEmail4" class="form-label">Nombre</label>
-                        <input 
-                        type="text" value={nombre} 
+                        <label class="form-label">Nombre</label>
+                        <input  value={nombre} 
                         onChange={(e)=> setNombre(e.target.value)} class="form-control" 
-                        id="inputEmail4" placeholder="Su nombre"/>
+                         placeholder="Su nombre"/>
                     </div>
                     <div class="campos col-md-6">
-                        <label for="inputPassword4" class="form-label">Apellido</label>
-                        <input type="text" value={apellido} 
+                        <label  class="form-label">Apellido</label>
+                        <input  value={apellido} 
                         onChange={(e)=> setApellido(e.target.value)} 
-                        class="form-control" id="inputPassword4" 
+                        class="form-control" 
                         placeholder="Su apellido"/>
                     </div>
                     <div class="campos col-12">
-                        <label for="inputAddress" class="form-label">Identificación</label>
-                        <input type="text" value={identificacion} 
+                        <label  class="form-label">Identificación</label>
+                        <input  value={identificacion} 
                         onChange={(e)=> setIdentificacion(e.target.value)}
-                        class="form-control" id="inputAddress" 
+                        class="form-control" 
                         placeholder="Digite su Documento"/>
                     </div>
                     <div class="campos col-12">
-                        <label for="inputAddress2" class="form-label">Fecha de nachimiento</label>
+                        <label  class="form-label">Fecha de nachimiento</label>
                         <input type="date" value={fecha_nacimiento} 
                         onChange={(e)=> setFecha_nacimiento(e.target.value)}
                         class="form-control" id="inputAddress2"/>
                     </div>
     
                     <div class="campos col-md-4">
-                        <label for="inputState" class="form-label">Sexo</label>
-                        <select id="inputState" value={sexo} 
+                        <label  class="form-label">Sexo</label>
+                        <select  value={sexo} 
                         onChange={(e)=> setSexo(e.target.value)} 
                         class="form-select">
-                        <option selected>masculino</option>
+                        <option>masculino</option>
                         <option>femenino</option>
                         <option>otros...</option>
                         </select>
                     </div>
                     <div class="btn_enviar col-12">
-                        <button onClick={guardarClientes} class="btn btn-primary">Registrar</button>
+                        <button onClick={guardarcliente} class="btn btn-primary">Registrar</button>
                     </div>
                 </Form>
             </div>
         </>
-    )
+    );
 
 }
