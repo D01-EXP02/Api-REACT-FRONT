@@ -16,11 +16,7 @@
 
    console.log(apiBase + "/Guardar_cliente");
 
- export function _filtrocliente(identificacion){
+ export function _filtrocliente(){
     return fetch(apiBase + "/Consultar_clientes_por_Producto")
     .then(response => response.json())
-    .then(filtro =>{
-        const clientesFiltrados = filtro.filter(response => response.identificacion === identificacion);
-        return clientesFiltrados;
-    })
  }

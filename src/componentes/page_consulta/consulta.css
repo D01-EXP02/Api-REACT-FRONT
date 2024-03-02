@@ -1,0 +1,55 @@
+table{
+    width: 100%;
+    height: 100%;
+}
+
+tr td{
+    border: 2px black solid;
+    border-radius: 10px;
+    background: rgb(228, 228, 228);
+}
+
+tr th{
+    border: 1px rgb(83, 148, 223) solid;
+    background: rgb(135, 180, 240);
+    color: white;
+}
+
+#contenedor-main{
+    position: relative;
+    height: 90vh;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+}
+
+#contenedor-main::before{
+    content: "";
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background-image: url("https://www.proyectosendo.es/wp-content/uploads/2020/01/shutterstock_386814034-1280x839-1024x671.jpg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    z-index: -1;
+    opacity: 0.6;
+}
+
+#seccionDatos{
+    margin-top: 1%;
+    width: 80%;
+}
+
+span{
+    margin-top: 3%;
+}
+
+input{
+    width: 30%;
+    border-radius: 10px;
+}
